@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -31,9 +32,19 @@ public class Pedido {
 	private List<Ingresso> ingressos;
 	@Column(nullable = false)
 	private int quantidadeIngressos;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "evento_id")
+	private Evento evento;
 	@Transient
 	private String dataString;
 	
+	public void addIngresso(Ingresso ingresso) {
+		this.ingressos.add(ingresso);
+	}
+	
+	public void removeIngresso(Ingresso ingresso) {
+		this.ingressos.remove(ingresso);
+	}
 	
 	public String getDataString() {
 		try {
@@ -83,5 +94,15 @@ public class Pedido {
 	public void setDataString(String dataString) {
 		this.dataString = dataString;
 	}
+
+	public int getQuantidadeIngressos() {
+		return quantidadeIngressos;
+	}
+
+	public void setQuantidadeIngressos(int quantidadeIngressos) {
+		this.quantidadeIngressos = quantidadeIngressos;
+	}
+	
+	
 
 }

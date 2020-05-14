@@ -70,47 +70,30 @@ public class CasaDeShow {
 			return null;
 		}
 	}
-	
 	public String getCep() {
 		return cep;
 	}
-
-
-
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
-
-
 	public String getNumero() {
 		return numero;
 	}
-
-
-
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-
-
-
 	public void setImagemEncoded(String imagemEncoded) {
 		this.imagemEncoded = imagemEncoded;
 	}
-	
 	public byte[] getImagemCasaDeShow() {
 		return imagemCasaDeShow;
 	}
-
 	public void setImagemCasaDeShow(byte[] imagemCasaDeShow) {
 		this.imagemCasaDeShow = imagemCasaDeShow;
 	}
-
 	public void addEvento(Evento evento) {
 		eventos.add(evento);
 	}
-	
 	public void removeEvento(Evento evento) throws Exception {
 		if(evento.getQuantidadeIngressos() == evento.getQuantidadeIngressosInicial()) {
 			eventos.remove(evento);
@@ -118,7 +101,6 @@ public class CasaDeShow {
 			throw new Exception("Não é permitido excluir evento que tenham ingressos vendidos");
 		}
 	}
-	
 	public List<Evento> getEventos() {
 		return eventos;
 	}
@@ -161,13 +143,10 @@ public class CasaDeShow {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 	public String getEstado() {
 		return estado;
 	}
-
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
 }

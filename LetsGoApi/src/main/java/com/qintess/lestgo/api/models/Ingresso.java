@@ -13,8 +13,6 @@ public class Ingresso {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne(optional = false)
-	private Evento evento;
-	@ManyToOne(optional = false)
 	private Pedido pedido;
 	
 	public int getId() {
@@ -22,12 +20,6 @@ public class Ingresso {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public Evento getEvento() {
-		return evento;
-	}
-	public void setEvento(Evento evento) {
-		this.evento = evento;
 	}
 	public Pedido getPedido() {
 		return pedido;
