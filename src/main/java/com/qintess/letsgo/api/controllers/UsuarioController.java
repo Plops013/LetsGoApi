@@ -2,6 +2,7 @@ package com.qintess.letsgo.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@PostMapping("/")
+	@PostMapping("")
 	public Usuario createUsuario(@RequestBody Usuario usuario) {
 		return this.usuarioService.save(usuario);
 	}
@@ -29,4 +30,10 @@ public class UsuarioController {
 	public Usuario findById(@PathVariable("id") int id){
 		return this.usuarioService.findById(id);
 	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteById(@PathVariable("id") int id) {
+		this.usuarioService.deleteById(id);
+	}
+	
 }
