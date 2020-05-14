@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.qintess.lestgo.api.models.CasaDeShow;
-import com.qintess.lestgo.api.models.Usuario;
+import com.qintess.letsgo.api.models.CasaDeShow;
+import com.qintess.letsgo.api.models.Usuario;
 
 public interface CasaDeShowRepository extends JpaRepository<CasaDeShow, Integer>{
 

@@ -1,4 +1,4 @@
-package com.qintess.lestgo.api.models;
+package com.qintess.letsgo.api.models;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;

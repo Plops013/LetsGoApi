@@ -1,4 +1,4 @@
-package com.qintess.lestgo.api.models;
+package com.qintess.letsgo.api.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

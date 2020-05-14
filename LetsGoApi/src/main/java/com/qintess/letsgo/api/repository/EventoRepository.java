@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.qintess.lestgo.api.models.CasaDeShow;
-import com.qintess.lestgo.api.models.Evento;
+import com.qintess.letsgo.api.models.CasaDeShow;
+import com.qintess.letsgo.api.models.Evento;
 
 public interface EventoRepository extends JpaRepository<Evento, Integer> {
 

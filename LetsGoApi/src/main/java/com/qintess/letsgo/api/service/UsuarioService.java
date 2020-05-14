@@ -3,7 +3,7 @@ package com.qintess.letsgo.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qintess.lestgo.api.models.Usuario;
+import com.qintess.letsgo.api.models.Usuario;
 import com.qintess.letsgo.api.repository.UsuarioRepository;
 
 @Service

@@ -2,8 +2,8 @@ package com.qintess.letsgo.api.service;
 
 import org.springframework.stereotype.Service;
 
-import com.qintess.lestgo.api.models.Ingresso;
-import com.qintess.lestgo.api.models.Pedido;
+import com.qintess.letsgo.api.models.Ingresso;
+import com.qintess.letsgo.api.models.Pedido;
 
 @Service
 public class GeradorIngressos {
