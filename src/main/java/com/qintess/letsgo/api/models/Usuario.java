@@ -12,10 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Usuario {
@@ -24,18 +20,13 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(nullable = false, length = 50)
-	@NotEmpty(message = "Nome é obrigatório")
 	private String nome;
 	@Column(nullable = false, length = 70)
-	@NotEmpty(message = "Sobrenome é obrigatório")
 	private String sobrenome;
-	@NotEmpty(message = "Seu email nao pode ser nulo") @Email
 	@Column(nullable = false, length = 100, unique = true)
 	private String email;
 	@Column(nullable = false, length = 15)
 	private String telefone;
-	@NotEmpty(message = "Campo senha é obrigatório")
-	@Length(min = 6, message = "Sua senha deve conter entre 6 e 16 caracteres")
 	@Column(nullable = false, length = 160)
 	private String senha;
 	@Column

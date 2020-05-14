@@ -40,10 +40,8 @@ public class Evento {
 	@Column(nullable = false)
 	private int quantidadeIngressos;
 	@Column(nullable = false)
-	@NotNull(message = "Quantidade de Ingressos é obrigatória")
 	private int quantidadeIngressosInicial;	
 	@Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
-	@NotNull
 	private double preco;
 	@Transient
 	private int ingressosVendidos;

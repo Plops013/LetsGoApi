@@ -16,8 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -31,27 +29,18 @@ public class CasaDeShow {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(nullable = false, length = 60) @Length(max = 60, message = "Tamanho maximo permitido de 60 caracteres") 
-	@NotEmpty(message = "Nome é obrigatório")
 	private String nome;
 	@Column(nullable = false, length = 100)
-	@Length(max = 8, message = "Tamanho maximo do cep deve se 8 digitos. Não coloque traços")
-	@NotEmpty(message = "CEP é obrigatório")
 	private String cep;
 	@Column(nullable = false, length = 100) @Length(max = 100) 
-	@NotEmpty(message = "Endereço é obrigatório")
 	private String endereco;
 	@Column(nullable = false, length = 45) @Length(max = 45) 
-	@NotEmpty(message = "Numero é obrigatório")
 	private String numero;
 	@Column(nullable = false, length = 45) @Length(max = 45) 
-	@NotEmpty(message = "Cidade é obrigatória")
 	private String cidade;
 	@Column(nullable = false) 
-	@Length(max = 2, message = "Tipo de estado invalido, use apenas siglas.") 
-	@NotEmpty(message = "Estado é obrigatório")
 	public String estado;
 	@Column(nullable = false) @Min(value = 50, message = "Sua casa de show deve comportar ao menos 50 pessoas")
-	@NotNull(message = "Capacidade é obrigatório")
 	private int capacidade;
 	private byte[] imagemCasaDeShow;
 	@Transient
