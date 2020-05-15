@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qintess.letsgo.api.models.Evento;
 import com.qintess.letsgo.api.models.Pedido;
 import com.qintess.letsgo.api.models.Usuario;
 import com.qintess.letsgo.api.repository.PedidoRepository;
@@ -14,9 +15,14 @@ public class PedidoService {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	@Autowired
+	private EventoService eventoService;
 	
 	public Pedido save(Pedido pedido) {
 		pedido.setTotal(pedido.getQuantidadeIngressos() * pedido.getEvento().getPreco());
+		Evento eventoAtualizado = pedido.getEvento();
+		eventoAtualizado.setQuantidadeIngressos(eventoAtualizado.getQuantidadeIngressos() - pedido.getQuantidadeIngressos());
+		this.eventoService.merge(eventoAtualizado);
 		return this.pedidoRepository.save(pedido);
 	}
 	

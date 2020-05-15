@@ -57,14 +57,9 @@ public class Evento {
 	private String dataInicioString;
 
 	public int getIngressosVendidos() {
-		return ingressosVendidos;
+		return quantidadeIngressosInicial - quantidadeIngressos;
 	}
 
-	public void ingressosVendidos(int quantidade) {
-		this.ingressosVendidos += quantidade;
-		this.quantidadeIngressos -= quantidade;
-	}
-	
 	public String getDataInicioString() {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
