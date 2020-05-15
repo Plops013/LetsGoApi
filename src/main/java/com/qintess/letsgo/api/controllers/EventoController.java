@@ -51,7 +51,11 @@ public class EventoController {
 	}
 
 	@DeleteMapping("/evento/{id}")
-	public void deleteById(@PathVariable("id") int id) {
+	public void deleteById(@PathVariable("id") int id) throws Exception {
+		Evento evento = eventoService.findById(id);
+		if(evento.getIngressosVendidos() > 0) {
+			throw new Exception("Você não pode excluir um evento com ingressos vendidos");
+		}
 		this.eventoService.deleteById(id);
 	}
 }

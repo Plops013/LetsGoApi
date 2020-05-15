@@ -51,7 +51,11 @@ public class CasaDeShowController {
 	}
 
 	@DeleteMapping("/casadeshow/{id}")
-	public void deleteById(@PathVariable("id") int id) {
+	public void deleteById(@PathVariable("id") int id) throws Exception {
+		CasaDeShow casaDeShow = casaDeShowService.findById(id);
+		if(!casaDeShow.getEventos().isEmpty()) {
+			throw new Exception("Você não pode excluir uma casa de show com eventos vinculados!");
+		}
 		this.casaDeShowService.deleteById(id);
 	}
 }
