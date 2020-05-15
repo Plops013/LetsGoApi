@@ -19,40 +19,40 @@ Api feita para o projeto de eventos, quando for editar, enviar o id do objeto ju
 <strong>Usuario</strong>
 | METHOD       | URL           |
 | ------------- |:-------------:|
-| GET  |  [`localhost:8080/usuario/{id} `](#usuario) | 
-| POST |  [`localhost:8080/usuario `](#usuario)     | 
-| PUT  |  [`localhost:8080/usuario `](#usuario)     | 
-| DEL  |  [`localhost:8080/usuario/{id} `](#usuario) |
+| GET  |  [`/usuario/{id} `](#usuario) | 
+| POST |  [`/usuario `](#usuario)     | 
+| PUT  |  [`/usuario `](#usuario)     | 
+| DEL  |  [`/usuario/{id} `](#usuario) |
 
 <strong>Casa De Show</strong>
 | METHOD       | URL           |
 | ------------- |:-------------:|
-| GET  |  [`localhost:8080/casadeshow `](#casa-de-show) | 
-| GET  |  [`localhost:8080/casadeshow/{id} `](#casa-de-show) | 
-| GET  |  [`localhost:8080/usuario/{id}/casadeshow`](#casa-de-show) |  
-| POST |  [`localhost:8080/casadeshow/`](#casa-de-show)     | 
-| PUT  |  [`localhost:8080/casadeshow/`](#casa-de-show)      |  
-| DELETE  |  [`localhost:8080/casadeshow/{id}`](#casa-de-show) |
+| GET  |  [`/casadeshow `](#casa-de-show) | 
+| GET  |  [`/casadeshow/{id} `](#casa-de-show) | 
+| GET  |  [`/usuario/{id}/casadeshow`](#casa-de-show) |  
+| POST |  [`/casadeshow/`](#casa-de-show)     | 
+| PUT  |  [`/casadeshow/`](#casa-de-show)      |  
+| DELETE  |  [`/casadeshow/{id}`](#casa-de-show) |
 
 <strong>Evento</strong>
 | METHOD       | URL           |
 | ------------- |:-------------:|
-| GET  |  [`localhost:8080/evento`](#evento) |
-| GET  |  [`localhost:8080/casadeshow/{id}/evento`](#evento) |
-| GET  |  [`localhost:8080/evento/{id}`](#evento) |
-| POST |  [`localhost:8080/evento`](#evento) |
-| PUT  |  [`localhost:8080/evento`](#evento) |
-| DELETE  |  [`localhost:8080/evento/{id}`](#evento) |
+| GET  |  [`/evento`](#evento) |
+| GET  |  [`/casadeshow/{id}/evento`](#evento) |
+| GET  |  [`/evento/{id}`](#evento) |
+| POST |  [`/evento`](#evento) |
+| PUT  |  [`/evento`](#evento) |
+| DELETE  |  [`/evento/{id}`](#evento) |
 
 <strong>Pedido</strong>
 | METHOD       | URL           |
 | ------------- |:-------------:|
-| GET  |  [`localhost:8080/pedido`](#pedido) |
-| GET  |  [`localhost:8080/pedido/{id}`](#pedido) |
-| GET  |  [`localhost:8080/usuario/{id}/pedido`](#pedido) |
-| POST |  [`localhost:8080/pedido`](#pedido) |
-| PUT  |  [`localhost:8080/pedido`](#pedido) |
-| DELETE  |  [`localhost:8080/pedido/{id}`](#pedido) |
+| GET  |  [`/pedido`](#pedido) |
+| GET  |  [`/pedido/{id}`](#pedido) |
+| GET  |  [`/usuario/{id}/pedido`](#pedido) |
+| POST |  [`/pedido`](#pedido) |
+| PUT  |  [`/pedido`](#pedido) |
+| DELETE  |  [`/pedido/{id}`](#pedido) |
 
 
 ### Usuario
