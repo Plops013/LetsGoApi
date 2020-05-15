@@ -1,6 +1,18 @@
 # LetsGoApi
 
-Api feita para o projeto de eventos
+Api feita para o projeto de eventos, quando for editar, enviar o id do objeto junto no JSON, Exemplo:
+```JSON
+{
+	"id": 1,
+	"nome": "Fabio",
+	"sobrenome": "lopes",
+	"email": "binhopecoraaa@gmail.com",
+	"telefone": "(13) 981725946",
+	"senha": "123456",
+	"papel": { "id": 1 },
+	"dataNascimento": "1997-04-18"
+}
+```
 
 ## Rotas
 
