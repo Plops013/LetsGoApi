@@ -13,6 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 @Entity
 public class Usuario {
 	
@@ -29,10 +35,12 @@ public class Usuario {
 	private String telefone;
 	@Column(nullable = false, length = 160)
 	private String senha;
-	@Column
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate dataNascimento;
 	@ManyToOne
 	private Papel papel;
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<CasaDeShow> casasDeShow = new ArrayList<CasaDeShow>();
 	
@@ -88,5 +96,14 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", telefone="
+				+ telefone + ", senha=" + senha + ", dataNascimento=" + dataNascimento + ", papel=" + papel
+				+ ", casasDeShow=" + casasDeShow + "]";
+	}
+	
+	
 	
 }

@@ -2,6 +2,7 @@ package com.qintess.letsgo.api.models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 @Entity
 public class Pedido {
 
@@ -27,12 +33,14 @@ public class Pedido {
 	@Column(columnDefinition = "DECIMAL(10,2)")
 	private Double total = 0D;
 	@Column(nullable = false)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime dataCompra;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "pedido")
-	private List<Ingresso> ingressos;
+	private List<Ingresso> ingressos = new ArrayList<>();
 	@Column(nullable = false)
 	private int quantidadeIngressos;
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@JoinColumn(name = "evento_id")
 	private Evento evento;
 	@Transient
@@ -58,6 +66,14 @@ public class Pedido {
 		}
 	}
 	
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -102,7 +118,12 @@ public class Pedido {
 	public void setQuantidadeIngressos(int quantidadeIngressos) {
 		this.quantidadeIngressos = quantidadeIngressos;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Pedido [id=" + id + ", usuario=" + usuario + ", total=" + total + ", dataCompra=" + dataCompra
+				+ ", ingressos=" + ingressos + ", quantidadeIngressos=" + quantidadeIngressos + ", evento=" + evento
+				+ ", dataString=" + dataString + "]";
+	}
 
 }

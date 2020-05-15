@@ -11,6 +11,7 @@ public class GeradorIngressos {
 	public void gerarIngressos(Pedido pedido) {
 		for ( int i = 1; i <= pedido.getQuantidadeIngressos() ; i++) {
 			Ingresso ingresso = new Ingresso();
+			ingresso.setPedido(pedido);
 			pedido.addIngresso(ingresso);
 		}
 	}

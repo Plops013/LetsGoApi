@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Base64;
 
 import javax.persistence.Column;
@@ -13,11 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 @Entity
 public class Evento {
@@ -25,23 +26,21 @@ public class Evento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(nullable = false ,length = 70)
-	@NotEmpty(message = "Nome é obrigatório") @Length(max = 70, message = "O nome deve conter no maximo 70 caracteres")
+	@Column
 	private String nome;
-	@Column(nullable = false, columnDefinition = "TEXT")
-	@NotEmpty (message = "Descrição é obrigatório")
+	@Column(columnDefinition = "TEXT")
 	private String descricao;
-	@NotNull(message = "Data Inicio é obrigatório")
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime dataInicio;
-	@NotNull(message = "Data Fim é obrigatório")
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime dataFim;
-	@Column(nullable = false)
+	@Column
 	private int quantidadeIngressos;
-	@Column(nullable = false)
+	@Column
 	private int quantidadeIngressosInicial;	
-	@Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
+	@Column
 	private double preco;
 	@Transient
 	private int ingressosVendidos;
@@ -173,4 +172,16 @@ public class Evento {
 		this.casaDeShow = casaDeShow;
 	}
 
+	@Override
+	public String toString() {
+		return "Evento [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", dataInicio=" + dataInicio
+				+ ", dataFim=" + dataFim + ", quantidadeIngressos=" + quantidadeIngressos
+				+ ", quantidadeIngressosInicial=" + quantidadeIngressosInicial + ", preco=" + preco
+				+ ", ingressosVendidos=" + ingressosVendidos + ", casaDeShow=" + casaDeShow + ", imagemEncoded="
+				+ imagemEncoded + ", dataString=" + dataString + ", IngressosVendidos=" + IngressosVendidos
+				+ ", imagemEvento=" + Arrays.toString(imagemEvento) + ", dataInicioString=" + dataInicioString + "]";
+	}
+
+	
+	
 }

@@ -15,39 +15,37 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import javax.validation.constraints.Min;
 
-import org.hibernate.validator.constraints.Length;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@JsonIgnoreProperties(value = "usuario")
 public class CasaDeShow {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(nullable = false, length = 60) @Length(max = 60, message = "Tamanho maximo permitido de 60 caracteres") 
+	@Column
 	private String nome;
-	@Column(nullable = false, length = 100)
+	@Column
 	private String cep;
-	@Column(nullable = false, length = 100) @Length(max = 100) 
+	@Column
 	private String endereco;
-	@Column(nullable = false, length = 45) @Length(max = 45) 
+	@Column
 	private String numero;
-	@Column(nullable = false, length = 45) @Length(max = 45) 
+	@Column
 	private String cidade;
-	@Column(nullable = false) 
+	@Column
 	public String estado;
-	@Column(nullable = false) @Min(value = 50, message = "Sua casa de show deve comportar ao menos 50 pessoas")
+	@Column
 	private int capacidade;
 	private byte[] imagemCasaDeShow;
 	@Transient
+	@JsonIgnore
 	private String imagemEncoded;
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Usuario usuario;
 	@OneToMany(mappedBy = "casaDeShow", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@JsonIgnore
 	private List<Evento> eventos = new ArrayList<>();
 	
 	public String getImagemEncoded() {

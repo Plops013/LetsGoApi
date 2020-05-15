@@ -16,6 +16,7 @@ public class PedidoService {
 	private PedidoRepository pedidoRepository;
 	
 	public Pedido save(Pedido pedido) {
+		pedido.setTotal(pedido.getQuantidadeIngressos() * pedido.getEvento().getPreco());
 		return this.pedidoRepository.save(pedido);
 	}
 	
@@ -28,7 +29,7 @@ public class PedidoService {
 	}
 	
 	public List<Pedido> findByUsuario(Usuario usuario){
-		return this.findByUsuario(usuario);
+		return this.pedidoRepository.findByUsuario(usuario);
 	}
 	
 	public Pedido merge(Pedido pedido) {
