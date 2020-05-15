@@ -33,7 +33,7 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("")
-	public Usuario update(@RequestBody Usuario usuario) {
+	public Usuario update(@RequestBody Usuario usuario) throws Exception {
 		return this.usuarioService.merge(usuario);
 	}
 	

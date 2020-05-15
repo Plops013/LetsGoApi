@@ -3,7 +3,10 @@ package com.qintess.letsgo.api.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qintess.letsgo.api.models.Evento;
 import com.qintess.letsgo.api.models.Pedido;
@@ -18,16 +21,21 @@ public class UsuarioService {
 	@Autowired
 	private PedidoService pedidoService;
 
-	public Usuario findById(int id) {
-		return this.usuarioRepository.findById(id).get();
+	public ResponseEntity<Usuario> findById(int id) {
+		Usuario usuario = this.usuarioRepository.findById(id).get();
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
 
 	public Usuario save(Usuario usuario) {
 		return this.usuarioRepository.save(usuario);
 	}
 
-	public Usuario merge(Usuario usuario) {
-		return this.save(usuario);
+	public Usuario merge(Usuario usuario) throws Exception {
+		if(usuario.getId() == 0) {
+			throw new Exception("Usuario não encontrado");
+		} else {
+			return this.save(usuario);
+		}
 	}
 
 	public void deleteById(int id) {
