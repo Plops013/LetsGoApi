@@ -18,7 +18,7 @@ public class PedidoService {
 	@Autowired
 	private EventoService eventoService;
 	
-	public Pedido save(Pedido pedido) {
+	public Pedido save(Pedido pedido) throws Exception {
 		pedido.setTotal(pedido.getQuantidadeIngressos() * pedido.getEvento().getPreco());
 		Evento eventoAtualizado = pedido.getEvento();
 		eventoAtualizado.setQuantidadeIngressos(eventoAtualizado.getQuantidadeIngressos() - pedido.getQuantidadeIngressos());
@@ -38,8 +38,12 @@ public class PedidoService {
 		return this.pedidoRepository.findByUsuario(usuario);
 	}
 	
-	public Pedido merge(Pedido pedido) {
+	public Pedido merge(Pedido pedido) throws Exception {
+		if(pedido.getId() == 0) {
+			throw new Exception("Pedido não encontrado");
+		} else {
 		return this.save(pedido);
+		}
 	}
 	
 	public void deleteById(int id) {

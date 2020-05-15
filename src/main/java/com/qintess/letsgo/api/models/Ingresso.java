@@ -13,7 +13,7 @@ public class Ingresso {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id = 0;
 	@ManyToOne(optional = false)
 	@JsonIgnore
 	private Pedido pedido;

@@ -35,8 +35,12 @@ public class EventoService {
 		this.eventoRepository.deleteById(id);
 	}
 	
-	public Evento merge(Evento evento) {
+	public Evento merge(Evento evento) throws Exception {
+		if(evento.getId() == 0) {
+			throw new Exception("Evento não encontrado");
+		} else {
 		return this.save(evento);
+		}
 	}
 	
 }

@@ -18,7 +18,7 @@ public class Papel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id = 0;
 	@Column(nullable = false, length = 50)
 	private String nome;
 	@OneToMany(mappedBy = "papel")

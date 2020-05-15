@@ -31,8 +31,12 @@ public class CasaDeShowService {
 		return this.casaDeShowRepository.findByUsuario(usuario);
 	}
 	
-	public CasaDeShow merge(CasaDeShow casaDeShow) {
+	public CasaDeShow merge(CasaDeShow casaDeShow) throws Exception {
+		if(casaDeShow.getId() == 0) {
+			throw new Exception("Casa De Show não encontrada");
+		} else {
 		return this.save(casaDeShow);
+		}
 	}
 	
 	public void deleteById(int id) {

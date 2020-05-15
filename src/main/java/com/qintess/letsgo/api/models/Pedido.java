@@ -27,7 +27,7 @@ public class Pedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id = 0;
 	@ManyToOne(optional = false)
 	private Usuario usuario;
 	@Column(columnDefinition = "DECIMAL(10,2)")

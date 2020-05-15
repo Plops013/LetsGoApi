@@ -25,7 +25,7 @@ public class Evento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id = 0;
 	@Column
 	private String nome;
 	@Column(columnDefinition = "TEXT")
