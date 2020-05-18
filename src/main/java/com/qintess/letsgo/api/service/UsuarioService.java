@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qintess.letsgo.api.models.Evento;
+import com.qintess.letsgo.api.models.Papel;
 import com.qintess.letsgo.api.models.Pedido;
 import com.qintess.letsgo.api.models.Usuario;
 import com.qintess.letsgo.api.repository.UsuarioRepository;
@@ -22,8 +23,19 @@ public class UsuarioService {
 		return this.usuarioRepository.findById(id).get();
 	}
 
-	public Usuario save(Usuario usuario) {
+	public List<Usuario> findAll(){
+		return this.usuarioRepository.findAll();
+	}
+
+	public List<Usuario> findByPapel(Papel papel){
+		return this.usuarioRepository.findByPapel(papel);
+	}
+	public Usuario save(Usuario usuario) throws Exception {
+		if (this.alreadyRegistered(usuario)) {
+			throw new Exception("Email ja registrado!");
+		} else {
 		return this.usuarioRepository.save(usuario);
+		}
 	}
 
 	public Usuario merge(Usuario usuario) throws Exception {
@@ -53,6 +65,18 @@ public class UsuarioService {
 			return quantidadeJaComprados;
 		} else {
 			return 0;
+		}
+	}
+	
+	public Usuario findByEmail(String email){
+		return this.usuarioRepository.findByEmail(email);
+	}
+	
+	private boolean alreadyRegistered(Usuario usuario) {
+		if(this.findByEmail(usuario.getEmail()) != null && usuario.getId() != this.findByEmail(usuario.getEmail()).getId()) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

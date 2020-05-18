@@ -25,11 +25,10 @@ public class Papel {
 	private List<Usuario> usuarios = new ArrayList<>();
 	
 	public Papel() {}
-	public Papel(int id, String nome, List<Usuario> usuarios) {
+	public Papel(int id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.usuarios = usuarios;
 	}
 	public int getId() {
 		return id;

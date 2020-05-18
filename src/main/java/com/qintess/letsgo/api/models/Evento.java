@@ -50,8 +50,6 @@ public class Evento {
 	private String imagemEncoded;
 	@Transient 
 	private String dataString;
-	@Transient
-	private int IngressosVendidos;
 	private byte[] imagemEvento;
 	@Transient 
 	private String dataInicioString;
@@ -173,8 +171,7 @@ public class Evento {
 				+ ", dataFim=" + dataFim + ", quantidadeIngressos=" + quantidadeIngressos
 				+ ", quantidadeIngressosInicial=" + quantidadeIngressosInicial + ", preco=" + preco
 				+ ", ingressosVendidos=" + ingressosVendidos + ", casaDeShow=" + casaDeShow + ", imagemEncoded="
-				+ imagemEncoded + ", dataString=" + dataString + ", IngressosVendidos=" + IngressosVendidos
-				+ ", imagemEvento=" + Arrays.toString(imagemEvento) + ", dataInicioString=" + dataInicioString + "]";
+				+ imagemEncoded + ", dataString=" + dataString + ",  imagemEvento=" + Arrays.toString(imagemEvento) + ", dataInicioString=" + dataInicioString + "]";
 	}
 
 	

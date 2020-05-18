@@ -1,6 +1,7 @@
 package com.qintess.letsgo.api.models;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -41,9 +43,42 @@ public class Usuario {
 	@ManyToOne
 	private Papel papel;
 	@JsonIgnore
-	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.DETACH})
 	private List<CasaDeShow> casasDeShow = new ArrayList<CasaDeShow>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario", orphanRemoval = true)
+	private List<Pedido> pedidos = new ArrayList<>();
+	@Transient
+	private String dataString;
 	
+	public String getDataString() {
+		try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+			String inicioFormatado = dataNascimento.format(formatter);
+			String retorno = inicioFormatado;
+			return retorno;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "erro na conversão da data";
+		}
+	}
+	
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	public Papel getPapel() {
 		return papel;
 	}

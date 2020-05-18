@@ -1,8 +1,6 @@
 package com.qintess.letsgo.api.models;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,28 +35,13 @@ public class CasaDeShow {
 	public String estado;
 	@Column
 	private int capacidade;
-	private byte[] imagemCasaDeShow;
-	@Transient
-	@JsonIgnore
-	private String imagemEncoded;
 	@ManyToOne
 	private Usuario usuario;
 	@OneToMany(mappedBy = "casaDeShow", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Evento> eventos = new ArrayList<>();
 	
-	public String getImagemEncoded() {
-		try {
-			String base64Encoded;
-			byte[] encodeBase64 = Base64.getEncoder().encode(this.imagemCasaDeShow);
-			base64Encoded = new String(encodeBase64, "UTF-8");
-			this.imagemEncoded = base64Encoded;
-			return imagemEncoded;
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+	
 	public String getCep() {
 		return cep;
 	}
@@ -71,15 +53,6 @@ public class CasaDeShow {
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-	public void setImagemEncoded(String imagemEncoded) {
-		this.imagemEncoded = imagemEncoded;
-	}
-	public byte[] getImagemCasaDeShow() {
-		return imagemCasaDeShow;
-	}
-	public void setImagemCasaDeShow(byte[] imagemCasaDeShow) {
-		this.imagemCasaDeShow = imagemCasaDeShow;
 	}
 	public void addEvento(Evento evento) {
 		eventos.add(evento);
