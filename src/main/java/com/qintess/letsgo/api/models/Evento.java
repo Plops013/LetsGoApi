@@ -46,11 +46,10 @@ public class Evento {
 	private int ingressosVendidos;
 	@ManyToOne
 	private CasaDeShow casaDeShow;
-	@Transient
+	@Column(columnDefinition = "TEXT")
 	private String imagemEncoded;
 	@Transient 
 	private String dataString;
-	private byte[] imagemEvento;
 	@Transient 
 	private String dataInicioString;
 
@@ -83,27 +82,17 @@ public class Evento {
 		}
 	}
 
+	
 	public String getImagemEncoded() {
-		try {
-			String base64Encoded;
-			byte[] encodeBase64 = Base64.getEncoder().encode(this.imagemEvento);
-			base64Encoded = new String(encodeBase64, "UTF-8");
-			this.imagemEncoded = base64Encoded;
-			return imagemEncoded;
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return null;
-		}
+		return imagemEncoded;
 	}
-	public byte[] getImagemEvento() {
-		return imagemEvento;
-	}
-	public void setImagemEvento(byte[] imagemEvento) {
-		this.imagemEvento = imagemEvento;
-	}
+
 	public void setImagemEncoded(String imagemEncoded) {
 		this.imagemEncoded = imagemEncoded;
 	}
+
+	
+	
 	public int getQuantidadeIngressosInicial() {
 		return quantidadeIngressosInicial;
 	}
@@ -164,16 +153,4 @@ public class Evento {
 	public void setCasaDeShow(CasaDeShow casaDeShow) {
 		this.casaDeShow = casaDeShow;
 	}
-
-	@Override
-	public String toString() {
-		return "Evento [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", dataInicio=" + dataInicio
-				+ ", dataFim=" + dataFim + ", quantidadeIngressos=" + quantidadeIngressos
-				+ ", quantidadeIngressosInicial=" + quantidadeIngressosInicial + ", preco=" + preco
-				+ ", ingressosVendidos=" + ingressosVendidos + ", casaDeShow=" + casaDeShow + ", imagemEncoded="
-				+ imagemEncoded + ", dataString=" + dataString + ",  imagemEvento=" + Arrays.toString(imagemEvento) + ", dataInicioString=" + dataInicioString + "]";
-	}
-
-	
-	
 }

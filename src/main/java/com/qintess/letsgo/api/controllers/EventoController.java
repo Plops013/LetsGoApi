@@ -44,6 +44,7 @@ public class EventoController {
 
 	@PostMapping("/evento")
 	public Evento save(@RequestBody Evento evento) {
+		evento.setQuantidadeIngressosInicial(evento.getQuantidadeIngressos());
 		return this.eventoService.save(evento);
 	}
 
