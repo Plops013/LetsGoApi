@@ -19,11 +19,15 @@ public class PedidoService {
 	private EventoService eventoService;
 	
 	public Pedido save(Pedido pedido) throws Exception {
+		if(eventoService.temIngressos(pedido.getQuantidadeIngressos(), pedido.getEvento())) {
 		pedido.setTotal(pedido.getQuantidadeIngressos() * pedido.getEvento().getPreco());
 		Evento eventoAtualizado = pedido.getEvento();
 		eventoAtualizado.setQuantidadeIngressos(eventoAtualizado.getQuantidadeIngressos() - pedido.getQuantidadeIngressos());
 		this.eventoService.merge(eventoAtualizado);
 		return this.pedidoRepository.save(pedido);
+		} else {
+			throw new Exception("Evento não tem mais ingressos disponiveis");
+		}
 	}
 	
 	public Pedido findById(int id) {

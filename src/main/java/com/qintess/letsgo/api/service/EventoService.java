@@ -43,4 +43,12 @@ public class EventoService {
 		}
 	}
 	
+	public boolean temIngressos(int quantidade, Evento evento) {
+		if ((evento.getQuantidadeIngressos() - quantidade) < 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 }
