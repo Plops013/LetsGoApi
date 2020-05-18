@@ -94,8 +94,7 @@ Exemplo:
 	"quantidadeIngressos" : 200,
 	"quantidadeIngressosInicial": 200,
 	"preco": 25.20,
-	"casaDeShow": { "id": 1 },
-	"imagemEvento": [ 1, 2, 3, 4, 5, 6]
+	"casaDeShow": { "id": 1 }
 }
 ```
 ### Pedido
