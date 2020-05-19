@@ -1,11 +1,8 @@
 package com.qintess.letsgo.api.models;
 
-import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Base64;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
